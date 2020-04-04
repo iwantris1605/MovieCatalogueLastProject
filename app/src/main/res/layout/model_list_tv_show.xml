@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_tv_show"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/iv_tv_show_photo"
+            android:layout_width="100dp"
+            android:layout_height="115dp"
+            android:contentDescription="@string/image_tv_show" />
+
+        <TextView
+            android:id="@+id/tv_tv_show_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/iv_tv_show_photo"
+            android:text="@string/tv_tv_show_name"
+            android:maxLines="1"
+            android:textColor="@color/colorBlueDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_tv_show_release"
+            android:drawableStart="@drawable/ic_date_range_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tv_show_name"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/iv_tv_show_photo"
+            android:text="@string/tv_tv_show_release" />
+
+        <TextView
+            android:id="@+id/tv_tv_show_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_tv_show_release"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_toEndOf="@id/iv_tv_show_photo"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/tv_tv_show_description" />
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

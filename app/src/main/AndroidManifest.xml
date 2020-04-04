@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dicoding.picodiploma.moviecataloguelastproject">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.dicoding.picodiploma.movicataloguelastproject.READ_DATABASE" android:protectionLevel="normal"/>
+    <uses-permission android:name="com.dicoding.picodiploma.movicataloguelastproject.WRITE_DATABASE" android:protectionLevel="normal"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <provider
+            android:name=".provider.Provider"
+            android:authorities="com.dicoding.picodiploma.moviecataloguelastproject"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.dicoding.picodiploma.movicataloguelastproject.READ_DATABASE"
+            android:writePermission="com.dicoding.picodiploma.movicataloguelastproject.WRITE_DATABASE">
+        </provider>
+
+        <receiver android:name=".widget.MovieFavoriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/movie_favorite_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity android:name=".activity.SettingActivity"></activity>
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activity.DetailMovieActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activity.TvShowDetailActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.SplashScreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
