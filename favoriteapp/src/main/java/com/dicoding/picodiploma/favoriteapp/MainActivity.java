@@ -1,9 +1,9 @@
 package com.dicoding.picodiploma.favoriteapp;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
-import android.os.Bundle;
 
 import com.dicoding.picodiploma.favoriteapp.adapter.ViewPagerAdapter;
 import com.dicoding.picodiploma.favoriteapp.fragment.MovieFavoriteFragment;
@@ -16,6 +16,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Favorite App");
+        }
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         setupViewPager(viewPager);
