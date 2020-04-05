@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.dicoding.picodiploma.moviecataloguelastproject.R;
 import com.dicoding.picodiploma.moviecataloguelastproject.adapter.FavoriteMovieAdapter;
 import com.dicoding.picodiploma.moviecataloguelastproject.database.MovieHelper;
+import com.dicoding.picodiploma.moviecataloguelastproject.mappinghelper.MappingMovieHelper;
 import com.dicoding.picodiploma.moviecataloguelastproject.model.Movie;
 
 import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteMovie.CONTENT_URI;
@@ -73,7 +74,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         );
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                movie = new Movie(cursor);
+                movie = MappingMovieHelper.mapCursorToObject(cursor);
                 cursor.close();
             }
         }

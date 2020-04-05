@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.dicoding.picodiploma.moviecataloguelastproject.R;
 import com.dicoding.picodiploma.moviecataloguelastproject.adapter.FavoriteTvShowAdapter;
 import com.dicoding.picodiploma.moviecataloguelastproject.database.TvShowHelper;
+import com.dicoding.picodiploma.moviecataloguelastproject.mappinghelper.MappingTvShowHelper;
 import com.dicoding.picodiploma.moviecataloguelastproject.model.TvShow;
 
 import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.CONTENT_URI_TV;
@@ -71,7 +72,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
         );
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                tvShow = new TvShow(cursor);
+                tvShow = MappingTvShowHelper.mapCursorToObject(cursor);
                 cursor.close();
             }
         }
