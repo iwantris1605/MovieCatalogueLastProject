@@ -21,4 +21,14 @@ public class MappingMovieHelper {
         }
         return movieList;
     }
+
+    public static Movie mapCursorToObject(Cursor movieCursor) {
+        movieCursor.moveToFirst();
+        int id = movieCursor.getInt(movieCursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovie.MOVIE_ID));
+        String title = movieCursor.getString(movieCursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovie.TITLE));
+        String release_date = movieCursor.getString(movieCursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovie.RELEASE_DATE));
+        String overview = movieCursor.getString(movieCursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovie.OVERVIEW));
+        String photo = movieCursor.getString(movieCursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovie.PHOTO));
+        return new Movie(id, title, release_date, overview, photo);
+    }
 }
