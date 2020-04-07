@@ -1,6 +1,7 @@
 package com.dicoding.picodiploma.favoriteapp.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dicoding.picodiploma.favoriteapp.R;
+import com.dicoding.picodiploma.favoriteapp.activity.TvShowDetailActivity;
 import com.dicoding.picodiploma.favoriteapp.model.TvShow;
+import com.dicoding.picodiploma.favoriteapp.utils.CustomOnItemClickListener;
 
 import java.util.ArrayList;
 
@@ -39,17 +42,6 @@ public class FavoriteTvShowAdapter extends RecyclerView.Adapter<FavoriteTvShowAd
         notifyDataSetChanged();
     }
 
-    public void addItem(TvShow tvShow) {
-        this.listTvShows.add(tvShow);
-        notifyItemInserted(listTvShows.size() - 1);
-    }
-
-
-    public void removeItem(TvShow tvShow) {
-        this.listTvShows.remove(tvShow);
-        notifyItemRemoved(listTvShows.size());
-    }
-
     @NonNull
     @Override
     public FavoriteTvShowAdapter.FavoriteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -60,7 +52,7 @@ public class FavoriteTvShowAdapter extends RecyclerView.Adapter<FavoriteTvShowAd
     @Override
     public void onBindViewHolder(@NonNull final FavoriteTvShowAdapter.FavoriteViewHolder holder, int position) {
         final TvShow tvShow = listTvShows.get(position);
-        String url_image = "http://image.tmdb.org/t/p/w185" + tvShow.getPoster_path();
+        String url_image = "https://image.tmdb.org/t/p/w185" + tvShow.getPoster_path();
 
         Glide.with(holder.itemView.getContext())
                 .load(url_image)
@@ -68,6 +60,12 @@ public class FavoriteTvShowAdapter extends RecyclerView.Adapter<FavoriteTvShowAd
         holder.tvName.setText(tvShow.getName());
         holder.tvRelease.setText(tvShow.getFirst_air_date());
         holder.tvDescription.setText(tvShow.getOverview());
+        holder.cvFavTvShow.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
+            Intent intent = new Intent(activityTv, TvShowDetailActivity.class);
+            intent.putExtra(TvShowDetailActivity.EXTRA_TVSHOW, position1);
+            intent.putExtra(TvShowDetailActivity.EXTRA_TVSHOW, listTvShows.get(position1));
+            holder.itemView.getContext().startActivity(intent);
+        }));
     }
 
     @Override

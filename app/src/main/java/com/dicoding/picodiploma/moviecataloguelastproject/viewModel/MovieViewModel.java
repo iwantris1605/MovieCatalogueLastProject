@@ -26,6 +26,7 @@ public class MovieViewModel extends ViewModel {
 
     public void setMovie() {
         AsyncHttpClient client = new AsyncHttpClient();
+
         final ArrayList<Movie> listItems = new ArrayList<>();
 
         String url = "http://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&language=en-US";

@@ -22,10 +22,10 @@ import static com.dicoding.picodiploma.moviecataloguelastproject.database.Databa
 import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.TABLE_TV;
 
 public class Provider extends ContentProvider {
-    private static final int MOVIE = 1;
-    private static final int MOVIE_ID = 2;
-    private static final int TV = 10;
-    private static final int TV_ID = 20;
+    private static final int MOVIE = 100;
+    private static final int MOVIE_ID = 101;
+    private static final int TV = 200;
+    private static final int TV_ID = 201;
     private MovieHelper movieHelper;
     private TvShowHelper tvShowHelper;
 

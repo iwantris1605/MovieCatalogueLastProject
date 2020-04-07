@@ -8,16 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.dicoding.picodiploma.moviecataloguelastproject.model.TvShow;
-
-import java.util.ArrayList;
-
 import static android.provider.BaseColumns._ID;
 import static androidx.constraintlayout.widget.Constraints.TAG;
-import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.FIRST_AIR_DATE;
-import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.NAME;
-import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.OVERVIEW;
-import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.POSTER_PATH;
 import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.TABLE_TV;
 import static com.dicoding.picodiploma.moviecataloguelastproject.database.DatabaseContract.FavoriteTvShow.TV_SHOW_ID;
 
@@ -55,53 +47,6 @@ public class TvShowHelper {
             database.close();
     }
 
-    public ArrayList<TvShow> getTvShow() {
-        ArrayList<TvShow> arrayListTv = new ArrayList<>();
-        database = dataBaseHelper.getReadableDatabase();
-        Cursor cursor = database.query(DATABASE_TABLE,
-                new String[]{_ID, NAME, FIRST_AIR_DATE, OVERVIEW, POSTER_PATH},
-                null,
-                null,
-                null,
-                null,
-                _ID + " ASC",
-                null);
-        cursor.moveToFirst();
-        TvShow tvShow;
-        if (cursor.getCount() > 0) {
-            do {
-                tvShow = new TvShow();
-                tvShow.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(_ID))));
-                tvShow.setName(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteTvShow.NAME)));
-                tvShow.setFirst_air_date(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteTvShow.FIRST_AIR_DATE)));
-                tvShow.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteTvShow.OVERVIEW)));
-                tvShow.setPoster_path(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteTvShow.POSTER_PATH)));
-
-                arrayListTv.add(tvShow);
-
-                cursor.moveToNext();
-
-            } while (!cursor.isAfterLast());
-        }
-        cursor.close();
-        return arrayListTv;
-    }
-
-    public long insertFavoriteTvShow(TvShow tvShow) {
-        ContentValues values = new ContentValues();
-        values.put(TV_SHOW_ID, tvShow.getId());
-        values.put(NAME, tvShow.getName());
-        values.put(FIRST_AIR_DATE, tvShow.getFirst_air_date());
-        values.put(OVERVIEW, tvShow.getOverview());
-        values.put(POSTER_PATH, tvShow.getPoster_path());
-
-        return database.insert(DATABASE_TABLE, null, values);
-    }
-
-    public void deleteFavoriteTvShow(int id) {
-        database = dataBaseHelper.getWritableDatabase();
-        database.delete(DatabaseContract.FavoriteTvShow.TABLE_TV, DatabaseContract.FavoriteTvShow.TV_SHOW_ID + "=" + id, null);
-    }
 
     public boolean checkFavoriteTvShow(String id) {
         database = dataBaseHelper.getWritableDatabase();

@@ -31,4 +31,5 @@ public class MappingMovieHelper {
         String photo = movieCursor.getString(movieCursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovie.PHOTO));
         return new Movie(id, title, release_date, overview, photo);
     }
+
 }

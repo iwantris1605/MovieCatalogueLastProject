@@ -54,7 +54,7 @@ public class MovieHelper {
             database.close();
     }
 
-    public ArrayList<Movie> getMovie() {
+    public ArrayList<Movie> getFavoriteMovie() {
         ArrayList<Movie> arrayList = new ArrayList<>();
         database = dataBaseHelper.getReadableDatabase();
         Cursor cursor = database.query(DATABASE_TABLE,
@@ -84,22 +84,6 @@ public class MovieHelper {
         }
         cursor.close();
         return arrayList;
-    }
-
-    public long insertFavoriteMovie(Movie movie) {
-        ContentValues values = new ContentValues();
-        values.put(MOVIE_ID, movie.getId());
-        values.put(TITLE, movie.getTitle());
-        values.put(RELEASE_DATE, movie.getRelease_date());
-        values.put(OVERVIEW, movie.getOverview());
-        values.put(PHOTO, movie.getPhoto());
-
-        return database.insert(DATABASE_TABLE, null, values);
-    }
-
-    public void deleteFavoriteMovie(int id) {
-        database = dataBaseHelper.getWritableDatabase();
-        database.delete(TABLE_MOVIE, DatabaseContract.FavoriteMovie.MOVIE_ID + "=" + id, null);
     }
 
     public boolean checkFavoriteMovie(String id) {

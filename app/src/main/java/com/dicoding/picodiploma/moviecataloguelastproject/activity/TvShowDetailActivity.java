@@ -31,6 +31,7 @@ import static com.dicoding.picodiploma.moviecataloguelastproject.database.Databa
 public class TvShowDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnAdd;
     private ImageButton btnDelete;
+    private TvShowHelper tvShowHelper;
 
     private FavoriteTvShowAdapter favoriteTvShowAdapter;
 
@@ -61,7 +62,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
         favoriteTvShowAdapter = new FavoriteTvShowAdapter(this);
         tvShow = getIntent().getParcelableExtra(EXTRA_TVSHOW);
 
-        TvShowHelper tvShowHelper = TvShowHelper.getInstance(getApplicationContext());
+        tvShowHelper = TvShowHelper.getInstance(getApplicationContext());
         tvShowHelper.open();
         Cursor cursor = getContentResolver().query(
                 Uri.parse(CONTENT_URI_TV + "/" + tvShow.getId()),
@@ -109,6 +110,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
             tvShow = getIntent().getParcelableExtra(EXTRA_TVSHOW);
             favoriteTvShowAdapter.addItem(tvShow);
 
+            tvShowHelper.open();
             ContentValues values = new ContentValues();
             values.put(TV_SHOW_ID, tvShow.getId());
             values.put(NAME, tvShow.getName());
@@ -119,6 +121,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
             String toastAddFavTv = getString(R.string.item_save);
 
             getContentResolver().insert(CONTENT_URI_TV, values);
+            tvShowHelper.close();
 
             btnAdd.setVisibility(View.GONE);
             btnDelete.setVisibility(View.VISIBLE);
@@ -127,7 +130,9 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
             tvShow = getIntent().getParcelableExtra(EXTRA_TVSHOW);
             favoriteTvShowAdapter.removeItem(tvShow);
             String toastDelete = getString(R.string.item_delete);
+            tvShowHelper.open();
             getContentResolver().delete(Uri.parse(CONTENT_URI_TV + "/" + tvShow.getId()), null, null);
+            tvShowHelper.close();
             Toast.makeText(TvShowDetailActivity.this, toastDelete, Toast.LENGTH_SHORT).show();
             btnAdd.setVisibility(View.VISIBLE);
             btnDelete.setVisibility(View.GONE);

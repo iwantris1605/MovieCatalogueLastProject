@@ -3,8 +3,10 @@
     package="com.dicoding.picodiploma.moviecataloguelastproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.dicoding.picodiploma.movicataloguelastproject.READ_DATABASE" android:protectionLevel="normal"/>
-    <uses-permission android:name="com.dicoding.picodiploma.movicataloguelastproject.WRITE_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.dicoding.picodiploma.moviecataloguelastproject.READ_DATABASE"
+                android:protectionLevel="normal"/>
+    <permission android:name="com.dicoding.picodiploma.moviecataloguelastproject.WRITE_DATABASE"
+                android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"
@@ -16,10 +18,9 @@
         <provider
             android:name=".provider.Provider"
             android:authorities="com.dicoding.picodiploma.moviecataloguelastproject"
-            android:enabled="true"
             android:exported="true"
-            android:readPermission="com.dicoding.picodiploma.movicataloguelastproject.READ_DATABASE"
-            android:writePermission="com.dicoding.picodiploma.movicataloguelastproject.WRITE_DATABASE">
+            android:readPermission="com.dicoding.picodiploma.moviecataloguelastproject.READ_DATABASE"
+            android:writePermission="com.dicoding.picodiploma.moviecataloguelastproject.WRITE_DATABASE">
         </provider>
 
         <receiver android:name=".widget.MovieFavoriteWidget">
@@ -36,7 +37,9 @@
             android:name=".widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SettingActivity">
+
+        </activity>
         <activity
             android:name=".activity.AboutUsActivity"
             android:parentActivityName=".MainActivity" />

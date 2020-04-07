@@ -33,6 +33,7 @@ public class MovieFavoriteFragment extends Fragment implements LoadMovieCallback
     private RecyclerView rvFavMovie;
     private FavoriteMovieAdapter favoriteMovieAdapter;
 
+
     private static final String EXTRA_STATE = "EXTRA_STATE";
 
 

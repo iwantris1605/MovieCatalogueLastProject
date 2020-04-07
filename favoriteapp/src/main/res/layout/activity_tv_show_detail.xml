@@ -19,36 +19,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_add_favorite"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="75dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="75dp"
-            android:background="@drawable/corner_img_button"
-            android:padding="2dp"
-            android:text="@string/add_to_favorite"
-            android:textColor="@color/colorWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvShowImage" />
-
-        <ImageButton
-            android:id="@+id/btn_delete_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
-            android:background="@drawable/corner_img_button"
-            android:contentDescription="@string/delete"
-            android:padding="2dp"
-            android:src="@drawable/ic_delete_white_36dp"
-            android:text="@string/delete_favorite"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvShowImage"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/tv_tvShow1"
             android:layout_width="wrap_content"
@@ -58,7 +28,7 @@
             android:text="@string/txt_tv_show_name"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_add_favorite" />
+            app:layout_constraintTop_toBottomOf="@+id/tvShowImage" />
 
         <TextView
             android:id="@+id/tvShowName"

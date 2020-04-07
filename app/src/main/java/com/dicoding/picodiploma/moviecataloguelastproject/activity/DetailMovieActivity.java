@@ -32,6 +32,7 @@ import static com.dicoding.picodiploma.moviecataloguelastproject.database.Databa
 public class DetailMovieActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnAdd;
     private ImageButton btnDelete;
+    private MovieHelper movieHelper;
 
     private FavoriteMovieAdapter favoriteMovieAdapter;
 
@@ -63,7 +64,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         favoriteMovieAdapter = new FavoriteMovieAdapter(this);
         movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
 
-        MovieHelper movieHelper = MovieHelper.getInstance(getApplicationContext());
+        movieHelper = MovieHelper.getInstance(getApplicationContext());
         movieHelper.open();
         Cursor cursor = getContentResolver().query(
                 Uri.parse(CONTENT_URI + "/" + movie.getId()),
@@ -109,7 +110,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         if (view.getId() == R.id.btn_add_favorite) {
             movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
             favoriteMovieAdapter.addItem(movie);
-
+            movieHelper.open();
             ContentValues values = new ContentValues();
             values.put(MOVIE_ID, movie.getId());
             values.put(TITLE, movie.getTitle());
@@ -120,6 +121,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             String toastAddFav = getString(R.string.item_save);
 
             getContentResolver().insert(CONTENT_URI, values);
+            movieHelper.close();
 
             btnAdd.setVisibility(View.GONE);
             btnDelete.setVisibility(View.VISIBLE);
@@ -129,7 +131,9 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             favoriteMovieAdapter.removeItem(movie);
 
             String toastDelete = getString(R.string.item_delete);
+            movieHelper.open();
             getContentResolver().delete(Uri.parse(CONTENT_URI + "/" + movie.getId()), null, null);
+            movieHelper.close();
             Toast.makeText(DetailMovieActivity.this, toastDelete, Toast.LENGTH_SHORT).show();
             btnAdd.setVisibility(View.VISIBLE);
             btnDelete.setVisibility(View.GONE);

@@ -35,7 +35,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public void onDataSetChanged() {
-        listMovies = movieHelper.getMovie();
+        listMovies = movieHelper.getFavoriteMovie();
     }
 
     @Override
