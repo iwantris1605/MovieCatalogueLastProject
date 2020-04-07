@@ -63,7 +63,7 @@ public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdap
     @Override
     public void onBindViewHolder(@NonNull final FavoriteMovieAdapter.FavoriteViewHolder holder, int position) {
         final Movie movie = listMovies.get(position);
-        String url_image = "http://image.tmdb.org/t/p/w185" + movie.getPhoto();
+        String url_image = "https://image.tmdb.org/t/p/w185" + movie.getPhoto();
 
         Glide.with(holder.itemView.getContext())
                 .load(url_image)

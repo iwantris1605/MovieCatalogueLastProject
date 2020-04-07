@@ -83,7 +83,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
             btnDelete.setVisibility(View.VISIBLE);
         }
 
-        String url_image = "http://image.tmdb.org/t/p/w500" + tvShow.getPoster_path();
+        String url_image = "https://image.tmdb.org/t/p/w500" + tvShow.getPoster_path();
 
         if (tvShow != null) {
             ImageView imgPhoto = findViewById(R.id.tvShowImage);

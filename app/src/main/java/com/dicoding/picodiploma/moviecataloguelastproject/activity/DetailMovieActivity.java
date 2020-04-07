@@ -85,7 +85,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             btnDelete.setVisibility(View.VISIBLE);
         }
 
-        String url_image = "http://image.tmdb.org/t/p/w500" + movie.getPhoto();
+        String url_image = "https://image.tmdb.org/t/p/w500" + movie.getPhoto();
 
         if (movie != null) {
             ImageView imgPhoto = findViewById(R.id.movieImage);

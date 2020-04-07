@@ -39,7 +39,7 @@ public class CardViewMovieAdapter extends RecyclerView.Adapter<CardViewMovieAdap
     @Override
     public void onBindViewHolder(@NonNull final CardViewViewHolder holder, final int position) {
         Movie movie = mData.get(position);
-        String url_image = "http://image.tmdb.org/t/p/w185" + movie.getPhoto();
+        String url_image = "https://image.tmdb.org/t/p/w185" + movie.getPhoto();
 
         Glide.with(holder.itemView.getContext())
                 .load(url_image)

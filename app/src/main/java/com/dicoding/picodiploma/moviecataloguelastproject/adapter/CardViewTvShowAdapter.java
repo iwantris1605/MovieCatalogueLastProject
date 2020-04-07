@@ -39,7 +39,7 @@ public class CardViewTvShowAdapter extends RecyclerView.Adapter<CardViewTvShowAd
     @Override
     public void onBindViewHolder(@NonNull final CardViewViewHolder holder, final int position) {
         TvShow tvShow = tvData.get(position);
-        String url_image = "http://image.tmdb.org/t/p/w185" + tvShow.getPoster_path();
+        String url_image = "https://image.tmdb.org/t/p/w185" + tvShow.getPoster_path();
 
         Glide.with(holder.itemView.getContext())
                 .load(url_image)
